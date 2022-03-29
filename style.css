@@ -1,0 +1,116 @@
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+body {
+  background-color: black;
+  margin-top: 50px;
+  text-align: center;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  background: url(img/theater.avif) center/cover;
+  border-radius: 20px;
+}
+.game__button {
+  width: 45px;
+  height: 45px;
+  background-color: wheat;
+  border: 4px solid black;
+  font-size: 25px;
+  transition: transform 300ms ease-in;
+}
+
+.game__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.game__button:hover {
+  transform: scale(1.1);
+}
+
+.game__timer {
+  width: 80px;
+  background-color: white;
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-top: 8px;
+  visibility: hidden;
+  user-select: none;
+  cursor: auto;
+}
+
+.game__score {
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  margin-top: 8px;
+  font-size: 33px;
+  background-color: darksalmon;
+  border-radius: 50%;
+  border: 3px solid black;
+  color: white;
+  visibility: hidden;
+  user-select: none;
+  cursor: auto;
+}
+.game__field {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pop-up {
+  width: 400px;
+  height: 140px;
+  background-color: #00000090;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  transform: translateY(-150%);
+  display: block;
+}
+
+.pop-up--hide {
+  display: none;
+}
+
+.pop-up__refresh {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: wheat;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.pop-up__message {
+  display: block;
+  font-size: 38px;
+}
+
+.K,
+.Yongsook,
+.Jehee,
+.Gunwook {
+  transition: transform 100ms ease-in;
+}
+
+.K:hover,
+.Yongsook:hover,
+.Jehee:hover,
+.Gunwook:hover {
+  transform: scale(1.1);
+}
