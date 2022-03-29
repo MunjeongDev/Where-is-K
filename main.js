@@ -2,10 +2,10 @@
 
 const imgSize = 100;
 const K_COUNT = 4;
-const YONGSOOK_COUNT = 3;
-const JEHEE_COUNT = 2;
+const YONGSOOK_COUNT = 5;
+const JEHEE_COUNT = 5;
 const GUNWOOK_COUNT = 5;
-const GAME_DURATION_SEC = 5;
+const GAME_DURATION_SEC = 15;
 
 const field = document.querySelector(".game__field");
 const fieldRect = field.getBoundingClientRect();
@@ -17,10 +17,14 @@ const popUp = document.querySelector(".pop-up");
 const popUpText = document.querySelector(".pop-up__message");
 const popUpRefresh = document.querySelector(".pop-up__refresh");
 
-const kSound = new Audio("./sound/carrot_pull.mp3");
+const kSound = new Audio("./sound/k.wav");
+const gunwookSound = new Audio("./sound/gunwook.wav");
+const jeheeSound = new Audio("./sound/jehee.wav");
+const yongsookSound = new Audio("./sound/yongsook.wav");
+
 const alertSound = new Audio("./sound/alert.wav");
-const bgSound = new Audio("./sound/bg.mp3");
-const othersSound = new Audio("./sound/bug_pull.mp3");
+const bgSound = new Audio("./sound/bg.wav");
+const othersSound = new Audio("./sound/koo.wav");
 const winSound = new Audio("./sound/game_win.mp3");
 
 let started = false;
@@ -147,9 +151,15 @@ function onFieldClick(event) {
     if (score === K_COUNT) {
       finishGame(true);
     }
-  } else if (target.matches(".Jehee" && ".Yongsook" && ".Gunwook")) {
+  } else if (target.matches(".Gunwook")) {
     finishGame(false);
-    playSound(othersSound);
+    playSound(gunwookSound);
+  } else if (target.matches(".Yongsook")) {
+    finishGame(false);
+    playSound(yongsookSound);
+  } else if (target.matches(".Jehee")) {
+    finishGame(false);
+    playSound(jeheeSound);
   }
 }
 
