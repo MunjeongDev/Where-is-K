@@ -1,4 +1,5 @@
 "use strict";
+import PopUp from "./popup.js";
 
 const imgSize = 100;
 const K_COUNT = 4;
@@ -12,10 +13,6 @@ const fieldRect = field.getBoundingClientRect();
 const gameBtn = document.querySelector(".game__button");
 const gameTimer = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
-
-const popUp = document.querySelector(".pop-up");
-const popUpText = document.querySelector(".pop-up__message");
-const popUpRefresh = document.querySelector(".pop-up__refresh");
 
 const kSound = new Audio("./sound/k.wav");
 const gunwookSound = new Audio("./sound/gunwook.wav");
@@ -31,6 +28,11 @@ let started = false;
 let score = 0;
 let timer = undefined;
 
+const gameFinishBanner = new PopUp();
+gameFinishBanner.setClickListener(() => {
+  startGame;
+});
+
 field.addEventListener("click", onFieldClick);
 gameBtn.addEventListener("click", () => {
   if (started) {
@@ -38,11 +40,6 @@ gameBtn.addEventListener("click", () => {
   } else {
     startGame();
   }
-});
-
-popUpRefresh.addEventListener("click", () => {
-  startGame();
-  hidePopUp();
 });
 
 function startGame() {
@@ -58,7 +55,7 @@ function stopGame() {
   started = false;
   stopGameTimer();
   hideGameButton();
-  showPopUpWithText("REPLAY❓");
+  gameFinishBanner.showWithText("REPLAY❓");
   playSound(alertSound);
   stopSound(bgSound);
 }
@@ -73,7 +70,9 @@ function finishGame(win) {
   }
   stopGameTimer();
   stopSound(bgSound);
-  showPopUpWithText(win ? `구경이 대본집을 얻었어🎉` : "케이를 찾지 못했어💩");
+  gameFinishBanner.showWithText(
+    win ? "구경이 대본집을 얻었어🎉" : "케이를 찾지 못했어💩"
+  );
 }
 
 function showStopButton() {
@@ -85,15 +84,6 @@ function showStopButton() {
 
 function hideGameButton() {
   gameBtn.style.visibility = "hidden";
-}
-
-function showPopUpWithText(text) {
-  popUpText.innerText = text;
-  popUp.classList.remove("pop-up--hide");
-}
-
-function hidePopUp() {
-  popUp.classList.add("pop-up--hide");
 }
 
 function showTimerAndScore() {
