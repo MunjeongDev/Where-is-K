@@ -12,6 +12,7 @@ export default class Field {
     this.GUNWOOK_COUNT = GUNWOOK_COUNT;
     this.field = document.querySelector(".game__field");
     this.fieldRect = this.field.getBoundingClientRect();
+
     this.field.addEventListener("click", this.onClick);
   }
 
@@ -45,7 +46,7 @@ export default class Field {
     }
   }
 
-  onClick(event) {
+  onClick = (event) => {
     const target = event.target;
     if (target.matches(".K")) {
       // 케이다!
@@ -62,7 +63,7 @@ export default class Field {
       this.onItemClick && this.onItemClick(".Jehee");
       playSound(jeheeSound);
     }
-  }
+  };
 }
 
 function randomNumber(min, max) {
